@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-undef
 module.exports = [
     {
         flavor: 'black milk tea',
