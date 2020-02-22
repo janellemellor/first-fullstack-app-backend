@@ -1,11 +1,10 @@
-// eslint-disable-next-line no-undef
 module.exports = [
     {
         flavor: 'black milk tea',
         itemNumber: 1,
         type: 'tapioca',
         isMilkTea: true,
-        image: './'
+        image: 'black_milk_tea.png'
     },
 
     {
@@ -13,7 +12,7 @@ module.exports = [
         itemNumber: 2,
         type: 'chia',
         isMilkTea: true,
-        image: './'
+        image: 'green_milk_tea.png'
     },
 
     {
@@ -21,7 +20,7 @@ module.exports = [
         itemNumber: 3,
         type: 'jellies',
         isMilkTea: false,
-        image: './'
+        image: 'lychee.png'
     },
 
     {
@@ -29,7 +28,7 @@ module.exports = [
         itemNumber: 4,
         type: 'tapioca',
         isMilkTea: true,
-        image: './'
+        image: 'taro_milk_tea.png'
     },
 
     {
@@ -37,7 +36,7 @@ module.exports = [
         itemNumber: 5,
         type: 'jellies',
         isMilkTea: false,
-        image: './'
+        image: 'mango.png'
     },
 
     {
@@ -45,7 +44,7 @@ module.exports = [
         itemNumber: 6,
         type: 'tapioca',
         isMilkTea: true,
-        image: './'
+        image: 'thai_tea.png'
     },
 
 ];

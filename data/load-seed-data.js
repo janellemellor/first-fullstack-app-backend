@@ -2,7 +2,7 @@ require('dotenv').config();
 const pg = require('pg');
 const Client = pg.Client;
 // import seed data:
-const data = require('./your-data.js');
+const data = require('./boba.js');
 
 run();
 
