@@ -27,8 +27,9 @@ app.use(cors());
 app.use(express.static('public'));
 
 // API Routes
-app.get('/api/boba', async(req, res) => { try {
-    const result = await client.query(` 
+app.get('/api/boba', async(req, res) => { 
+    try {
+        const result = await client.query(` 
         SELECT
             id,
             flavor, 
@@ -36,17 +37,17 @@ app.get('/api/boba', async(req, res) => { try {
             is_milk_tea, 
             url, 
             star_rating 
-        FROM boba;    
+        FROM bobas;    
         `);
 
-    console.log(result.rows);
+        console.log(result.rows);
     
-    res.json(result.rows);
-} catch (err) {
-    res.status(500).json({
-        error: err.message || err
-    });
-}
+        res.json(result.rows);
+    } catch (err) {
+        res.status(500).json({
+            error: err.message || err
+        });
+    }
 });
 
 
