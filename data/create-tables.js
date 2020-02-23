@@ -19,7 +19,14 @@ async function run() {
     
         // run a query to create tables
         await client.query(`
-          
+        CREATE TABLE bobas (
+            id SERIAL PRIMARY KEY NOT NULL,
+            flavor VARCHAR(256) NOT NULL,
+            type VARCHAR(256) NOT NULL,
+            is_milk_tea BOOLEAN NOT NULL,
+            url VARCHAR(256) NOT NULL,
+            star_rating INTEGER NOT NULL,
+        );
         `);
 
         console.log('create tables complete');
