@@ -26,8 +26,15 @@ async function run() {
             is_milk_tea BOOLEAN NOT NULL,
             image VARCHAR(256) NOT NULL,
             star_rating INTEGER NOT NULL
-        );
+            );
+        
+        CREATE TABLE types (
+            id SERIAL PRIMARY KEY NOT NULL, 
+            type VARCHAR(256) NOT NULL
+            );
         `);
+
+
 
         console.log('create tables complete');
     }

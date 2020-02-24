@@ -11,7 +11,7 @@ describe('api/boba', () => {
                 flavor: expect.any(String),
                 type: expect.any(String),
                 is_milk_tea: expect.any(Boolean),
-                url: expect.any(String),
+                image: expect.any(String),
                 star_rating: expect.any(Number)
             });
 
