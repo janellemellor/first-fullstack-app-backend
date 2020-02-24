@@ -30,7 +30,9 @@ app.use(express.static('public'));
 app.get('/api/boba', async(req, res) => { 
     try {
         const result = await client.query(` 
-        SELECT * FROM bobas;    
+        SELECT * FROM bobas; 
+        JOIN types
+        ON bobas.type_id = types.id   
         `);
 
         console.log(result.rows);
@@ -43,7 +45,22 @@ app.get('/api/boba', async(req, res) => {
     }
 });
 
+//types route
+app.get('/api/types', async(req, res) => {
+    try {
+        const result = await client.query(`
+            SELECT *
+            FROM types
+        `);
 
+        res.json(result.rows);
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({
+            error: err.message || err
+        });
+    }
+});
 
 // http method and path...
 

@@ -3,6 +3,7 @@ const pg = require('pg');
 const Client = pg.Client;
 // import seed data:
 const data = require('./boba.js');
+const types = require('./types');
 
 run();
 
@@ -12,10 +13,28 @@ async function run() {
     try {
         await client.connect();
     
+        const selectedTypes = await Promise.all(
+            types.map(async type => {
+                const result = await client.query(`
+                    INSERT INTO types (flavor)
+                    VALUES ($1)
+                    RETURNING *;
+                `,
+                [type]);
+
+                return result.rows[0];
+            })
+        );
+
+
         // "Promise all" does a parallel execution of async tasks
         await Promise.all(
             // map every item in the array data
             data.map(item => {
+                const type = selectedTypes.find(type => {
+                    return type.flavor === item.type;
+                });
+
                 // Use a "parameterized query" to insert the data,
                 return client.query(`
                     INSERT INTO bobas (flavor, type, is_milk_tea, image, star_rating)
