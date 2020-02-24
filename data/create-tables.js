@@ -24,8 +24,8 @@ async function run() {
             flavor VARCHAR(256) NOT NULL,
             type VARCHAR(256) NOT NULL,
             is_milk_tea BOOLEAN NOT NULL,
-            url VARCHAR(256) NOT NULL,
-            star_rating INTEGER NOT NULL,
+            image VARCHAR(256) NOT NULL,
+            star_rating INTEGER NOT NULL
         );
         `);
 

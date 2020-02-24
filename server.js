@@ -13,7 +13,7 @@ console.log(process.env);
 // Database Client
 const Client = pg.Client;
 // (create and connect using DATABASE_URL)
-const client = new Client(process.env.Database_URL);
+const client = new Client(process.env.DATABASE_URL);
 client.connect();
 
 
@@ -30,14 +30,7 @@ app.use(express.static('public'));
 app.get('/api/boba', async(req, res) => { 
     try {
         const result = await client.query(` 
-        SELECT
-            id,
-            flavor, 
-            type, 
-            is_milk_tea, 
-            url, 
-            star_rating 
-        FROM bobas;    
+        SELECT * FROM bobas;    
         `);
 
         console.log(result.rows);
