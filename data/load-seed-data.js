@@ -3,7 +3,7 @@ const pg = require('pg');
 const Client = pg.Client;
 // import seed data:
 const data = require('./boba.js');
-const types = require('./types');
+const types = require('./types.js');
 
 run();
 
@@ -16,7 +16,7 @@ async function run() {
         const selectedTypes = await Promise.all(
             types.map(async type => {
                 const result = await client.query(`
-                    INSERT INTO types (flavor)
+                    INSERT INTO types (type)
                     VALUES ($1)
                     RETURNING *;
                 `,
@@ -32,15 +32,15 @@ async function run() {
             // map every item in the array data
             data.map(item => {
                 const type = selectedTypes.find(type => {
-                    return type.flavor === item.type;
+                    return type.type === item.type;
                 });
 
                 // Use a "parameterized query" to insert the data,
                 return client.query(`
-                    INSERT INTO bobas (flavor, type, is_milk_tea, image, star_rating)
+                    INSERT INTO bobas (flavor, type_id, is_milk_tea, image, star_rating)
                     VALUES ($1, $2, $3, $4, $5);
                 `,
-                [item.flavor, item.type, item.is_milk_tea, item.image, item.star_rating]
+                [item.flavor, type.id, item.is_milk_tea, item.image, item.star_rating]
                 );
                 // Don't forget to "return" the client.query promise!
             })

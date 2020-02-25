@@ -30,9 +30,9 @@ app.use(express.static('public'));
 app.get('/api/boba', async(req, res) => { 
     try {
         const result = await client.query(` 
-        SELECT * FROM bobas; 
+        SELECT * FROM bobas
         JOIN types
-        ON bobas.type_id = types.id   
+        ON bobas.type_id = types.id;   
         `);
 
         console.log(result.rows);
