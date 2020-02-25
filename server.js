@@ -26,7 +26,7 @@ app.use(morgan('dev'));
 app.use(cors());
 app.use(express.static('public'));
 
-// API Routes
+// route to Boba API
 app.get('/api/boba', async(req, res) => { 
     try {
         const result = await client.query(` 
@@ -45,7 +45,32 @@ app.get('/api/boba', async(req, res) => {
     }
 });
 
-//types route
+//post route to create a new boba
+app.post('api/boba', async(req, res) => {
+    try {
+        console.log(req.body);
+        const result = await client.query(`
+        INSERT INTO bobas (flavor, type_id, is_milk_tea, image, star_rating)
+        VALUES($1, $2, $3, $4, $5, $6)
+        RETURNING *;
+        `,
+        
+        //pass values into an array to sanitize for SQL. VALUES $1...also is part of the sanitizing process.
+        [req.body.flavor, req.body.type_id, req.body.is_milk_tea, req.body.image, req.body.star_rating]
+        );
+
+        //returns the first result of the query
+        res.json(result.rows[0]);
+
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({
+            error: err.message || err
+        });
+    }
+});
+
+// route to boba types API
 app.get('/api/types', async(req, res) => {
     try {
         const result = await client.query(`
