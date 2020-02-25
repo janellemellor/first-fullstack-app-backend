@@ -34,6 +34,9 @@ async function run() {
                 const type = selectedTypes.find(type => {
                     return type.type === item.type;
                 });
+                console.log('type', type);
+                console.log('item', item);
+                
 
                 // Use a "parameterized query" to insert the data,
                 return client.query(`
