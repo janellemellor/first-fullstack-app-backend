@@ -25,6 +25,7 @@ const PORT = process.env.PORT;
 app.use(morgan('dev'));
 app.use(cors());
 app.use(express.static('public'));
+app.use(express.urlencoded({ extended: true }));
 
 // route to Boba API
 app.get('/api/boba', async(req, res) => { 
@@ -51,7 +52,7 @@ app.post('api/boba', async(req, res) => {
         console.log(req.body);
         const result = await client.query(`
         INSERT INTO bobas (flavor, type_id, is_milk_tea, image, star_rating)
-        VALUES($1, $2, $3, $4, $5, $6)
+        VALUES($1, $2, $3, $4, $5)
         RETURNING *;
         `,
         
