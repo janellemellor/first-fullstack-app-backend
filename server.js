@@ -47,7 +47,7 @@ app.get('/api/boba', async(req, res) => {
 });
 
 //post route to create a new boba
-app.post('api/boba', async(req, res) => {
+app.post('/api/boba', async(req, res) => {
     try {
         console.log(req.body);
         const result = await client.query(`
