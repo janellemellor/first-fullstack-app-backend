@@ -25,7 +25,9 @@ const PORT = process.env.PORT;
 app.use(morgan('dev'));
 app.use(cors());
 app.use(express.static('public'));
+app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
 
 // route to Boba API
 app.get('/api/boba', async(req, res) => { 
